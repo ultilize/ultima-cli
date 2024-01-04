@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Source global variables
+source "$(cd "$(dirname "$0")/../../.." && pwd)/globals.sh"
+
+source "$BASE_DIR/manage/update.sh"
+
+# Source utility scripts
+source "$BASE_DIR/util/help.sh"
+source "$BASE_DIR/util/version.sh"
+
+# Source installation scripts
+source "$BASE_DIR/install/docker.sh"
+source "$BASE_DIR/install/panel.sh"
+
+# Function to join arguments
+join_args() {
+    local IFS=" " # set the internal field separator to space
+    echo "$*"
+}
+
+# Command routing
+command=$(join_args "$@")
+
+case "$command" in
+    "install"*)
+        install_command "$2"
+        ;;
+    "update")
+        update_command
+        ;;
+    "change database")
+        change_database_command  # Define this in a respective file
+        ;;
+    "change credentials")
+        change_credentials_command  # Define this in a respective file
+        ;;
+    "-v"|"-ver"|"-version")
+        version_command
+        ;;
+    "help")
+        help_command
+        ;;
+    *)
+        echo -e ""
+        echo -e "Ultima CLI v${VERSION}"
+        echo -e "Type ${LIGHTBLUE}ultima-cli help${NC} for command help."
+        echo -e ""
+        ;;
+esac

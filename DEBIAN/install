@@ -1,0 +1,10 @@
+install/docker.sh usr/local/bin/ultima-cli/install
+install/panel.sh usr/local/bin/ultima-cli/install
+manage/update.sh usr/local/bin/ultima-cli/manage
+manage/change_credentials.sh usr/local/bin/ultima-cli/manage
+manage/change_database.sh usr/local/bin/ultima-cli/manage
+util/help.sh usr/local/bin/ultima-cli/util
+util/version.sh usr/local/bin/ultima-cli/util
+util/set_directory.sh usr/local/bin/ultima-cli/util
+globals.sh usr/local/bin/ultima-cli
+usr/local/bin/ultima-cli usr/local/bin
