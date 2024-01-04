@@ -1,0 +1,7 @@
+Package: ultima-cli
+Version: 1.0.0
+Section: custom
+Priority: optional
+Architecture: all
+Maintainer: Ultilize <main.ultilize@gmail.com>
+Description: Ultima CLI tool for easy management.
