@@ -23,8 +23,7 @@ install_command() {
     mkdir -p ./storage/projects; echo -e "${GREEN} $directory/storage/projects${NC}"
     mkdir -p ./storage/global; echo -e "${GREEN} $directory/storage/global${NC}"
 
-    echo -e "${LIGHTBLUE}Generating RSA keys and OpenSSL base64 token...${NC}"
-    mkdir -p ./storage/tokens
+    echo -e "${LIGHTBLUE}Generating RSA keys and OpenSSL base64 tokens...${NC}"
     if ! openssl genrsa -out ./storage/tokens/private.pem 2048; then
         echo -e "${RED}Failed to generate RSA private key.${NC}"
         exit 1
@@ -37,6 +36,16 @@ install_command() {
 
     if ! openssl rand -base64 32 > ./storage/tokens/server.key; then
         echo -e "${RED}Failed to generate OpenSSL base64 token.${NC}"
+        exit 1
+    fi
+
+    if ! openssl rand -base64 32 > ./storage/tokens/aes.key; then
+        echo -e "${RED}Failed to generate AES OpenSSL base64 token.${NC}"
+        exit 1
+    fi
+
+    if ! openssl rand -base64 64 > ./storage/tokens/jwt.key; then
+        echo -e "${RED}Failed to generate JWT OpenSSL base64 token.${NC}"
         exit 1
     fi
 
